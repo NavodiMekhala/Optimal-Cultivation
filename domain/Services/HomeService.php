@@ -9,51 +9,6 @@ use domain\Facades\CultivationFacade;
 
 class HomeService
 {
-    
-    /**
-     * all
-     *
-     * @return Collection
-     */
-    public function all()
-    {
-        return $this->categories->all();
-    }
-        
-    /**
-     * get
-     *
-     * @param  mixed $id
-     * @return void
-     */
-    public function get($id)
-    {
-        return $this->categories->find($id);
-    }
-    
-    /**
-     * make
-     *
-     * @param  mixed $data
-     * @param  mixed $fire_event
-     * @return void
-     */
-    public function make(array $data)
-    {
-        $category = $this->create($data);
-        return $category;
-    }
-       
-    /**
-     * create
-     *
-     * @param  mixed $data
-     * @return void
-     */
-    public function create(array $data)
-    {
-        return $this->categories->create($data);
-    }
 
     /**
      * Inset tempProduction by auth
@@ -61,6 +16,10 @@ class HomeService
      */
     public function import(array $data)
     {
+        $cultivations = CultivationFacade::all();
+        foreach($cultivations as $cultivation){
+            $cultivation->delete();
+        }
         $fileD = fopen($data['file2'], "r");
         $column = fgetcsv($fileD);
         while (!feof($fileD)) {
@@ -81,8 +40,14 @@ class HomeService
                 }
                 $data1['name'] = $value[6];
                 $data1['calculated_area'] = $value[10];
+                $data1['calculated_profit'] = $value[8];
+                $data1['calculated_harvest'] = $value[9];
                 CultivationFacade::make($data1);
             }
+        }
+        $climates = ClimateFacade::all();
+        foreach ($climates as $climate) {
+            $climate->delete();
         }
         $fileD1 = fopen($data['file1'], "r");
         $column = fgetcsv($fileD1);
@@ -92,7 +57,7 @@ class HomeService
         foreach ($rowData1 as $value) {
             if ($value != false) {
                 ClimateFacade::make([
-                    'date' => $this->changeDateFormate($value[0]),
+                    'date' => $value[0],
                     'rainfall' => $value[1],
                     'temperature' => $value[2],
                     'pressure' => $value[3],
@@ -109,6 +74,6 @@ class HomeService
     public function changeDateFormate($value)
     {
         $date = Carbon::parse($value);
-        return $date->format('Y-m-d');
+        return $date->format('m');
     }
 }

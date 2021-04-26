@@ -17,14 +17,14 @@ class Climate extends Model
         'pressure',
     ];
 
-    public function getClimate($climate){
+    public function getClimate($climate)
+    {
         if ($climate == 1) {
-            return $this->where('date', '=' , Carbon::now()->format('Y-m-d'))->first('rainfall');
-        } elseif($climate == 2) {
-            return $this->where('date', '=', Carbon::now()->format('Y-m-d'))->first('temperature');
-        } elseif($climate == 3){
-            return $this->where('date', '=', Carbon::now()->format('Y-m-d'))->first('pressure');
+            return  $this->where('date', '=' ,Carbon::now()->format('M-y'))->first('rainfall');
+        } elseif ($climate == 2) {
+            return $this->where('date','=' ,Carbon::now()->format('M-y'))->first('temperature');
+        } elseif ($climate == 3) {
+            return $this->where('date', '=' ,Carbon::now()->format('M-y'))->whereYear('created_at', Carbon::now()->format('Y'))->first('pressure');
         }
-        
     }
 }

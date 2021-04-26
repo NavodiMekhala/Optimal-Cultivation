@@ -13,6 +13,8 @@ class Cultivation extends Model
         'category_id',
         'name',
         'calculated_area',
+        'calculated_profit',
+        'calculated_harvest',
     ];
 
     public function getItemsByCategory($category_id)
