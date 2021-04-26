@@ -65,8 +65,10 @@
                                                 <div class="check"></div>
                                             </strong>
                                         </div>
-                                        <div class="col-lg-12 mt-4 center-align">
-                                            <div id="climate"></div>
+                                        <div class="card mt-4">
+                                            <div class="card-body" style="background-color: #ffffff;">
+                                                <div id="climate"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
