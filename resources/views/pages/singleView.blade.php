@@ -26,5 +26,29 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-12 mt-3">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h5 class="text-left">
+                        Calculated profit:-
+                    </h5>
+                </div>
+                <div class="col-lg-6">
+                    <small class="text-left">{{$item->calculated_profit}}</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 mt-3">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h5 class="text-left">
+                        Calculated harvest:-
+                    </h5>
+                </div>
+                <div class="col-lg-6">
+                    <small class="text-left">{{$item->calculated_harvest}}</small>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

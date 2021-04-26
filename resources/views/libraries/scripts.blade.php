@@ -60,6 +60,7 @@
             dataType: "html",
             data: data,
             success: function (response) {
+                $('#item_d').removeClass('d-none');
                 $("#item_details").html(response);
             }
         });
@@ -80,6 +81,7 @@
             dataType: "html",
             data: data,
             success: function (response) {
+                $('#climate_view').removeClass('d-none');
                 $("#climate").html(response);
             }
         });
